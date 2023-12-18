@@ -16,3 +16,17 @@ function submitWarehouseForm() {
         }
     });
 }
+
+$(document).ready(function(){
+	 $('.openModalButton').click(function() {
+	        var warehouseId = $(this).closest('.warehouse').data('id');
+	        openModal(warehouseId);
+	 });
+});
+
+function openModal(NO){
+	$.ajax({
+		
+		
+	});
+}

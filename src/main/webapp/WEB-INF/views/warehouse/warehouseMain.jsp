@@ -164,7 +164,12 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <h6 class="font-weight-bolder mb-0">창고 관리</h6>
-<%--           ${warehouseList } --%>
+          <!-- 데이터 전송 테스트 확인란 시작 -->
+          
+          <%-- ${warehouseListMain } --%>
+          <%-- ${warehouseListAll} --%>
+          
+          <!-- 데이터 전송 테스트 확인란 끝 -->
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -201,6 +206,8 @@
                 </div>
               </div>
             </div>
+            
+            <!-- 메인테이블 영역 시작-->
             <div class="card-body px-0 pb-2">
               <div class="table-responsive">
                 <table class="table align-items-center mb-0">
@@ -220,9 +227,12 @@
 						<th
 							class="text-center text-secondary text-xxs font-weight-bolder opacity-7"
 							style="width: 20px;">사용여부</th>
+						<th
+							class="text-center text-secondary text-xxs font-weight-bolder opacity-7"
+							style="width: 20px;">상세</th>	
 					</tr>
                   </thead>
-                  <c:forEach var="warehouseVO" items="${warehouseList}">
+                  <c:forEach var="warehouseListMain" items="${warehouseListMain}">
                   <tbody>
                    <tr>
 					  <td>
@@ -230,7 +240,7 @@
 							<div class="d-flex flex-column justify-content-center">
 								<h6
 									class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-									style="margin-left: 7px;">${warehouseVO.warehouse_no}</h6>
+									style="margin-left: 7px;">${warehouseListMain.warehouse_no}</h6>
 							</div>
 						</div>
 					   </td>
@@ -239,19 +249,58 @@
 							<div class="d-flex flex-column justify-content-center">
 								<h6
 									class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-									style="margin-left: 7px;">${warehouseVO.warehouse_sortation}</h6>
+									style="margin-left: 7px;">${warehouseListMain.warehouse_sortation}</h6>
 							</div>
 						</div>
 					   </td>
 					   
 					   <td class="align-middle text-center text-sm ">
-							<h6><a href="#">${warehouseVO.warehouse_name}</a></h6>						 
+							<h6><a href="#">${warehouseListMain.warehouse_name}</a></h6>						 
 					   </td>
 					   <td class="align-middle text-center text-sm">
-						  <p class="text-xs font-weight-bold mb-0">${warehouseVO.warehouse_admin_no}</p>
+						  <p class="text-xs font-weight-bold mb-0">${warehouseListMain.member_name}</p>
 					   </td>
 					   <td class="align-middle text-center">
-					   	   <span class="text-secondary text-xs font-weight-bold">${warehouseVO.warehouse_use_status}</span>
+					   	   <span class="text-secondary text-xs font-weight-bold">${warehouseListMain.warehouse_use_status}</span>
+					   </td>
+					   <td class="align-middle text-center">
+					   	   <!-- 창고 상세 정보 모달 버튼 시작-->
+					   	   <button type="button" class="btn" data-toggle="modal" data-target="#warehouseDetailModal"
+					   	   		   style="margin-bottom : 0; font-size: 15px">
+					   	   	<span class="text-secondary text-xs font-weight-bold" >+</span>
+					   	   </button>
+					   	   <!-- 창고 상세 정보 모달 버튼 끝-->
+					   	   
+					   	   <!-- 창고 상세 정보 모달 시작 -->
+							<div class="modal" id="warehouseDetailModal" data-backdrop="static">
+							    <div class="modal-dialog">
+							        <div class="modal-content">
+							
+							            <!-- 창고 상세 정보 모달 헤더 -->
+							            <div class="modal-header">
+							                <h4 class="modal-title">창고 상세 정보</h4>
+							            </div>
+							
+							            <!-- 창고 상세 정보 모달 본문 -->
+							            <div class="modal-body">
+							                <!-- 폼 입력 필드 -->
+							                <form id="warehouseForm">
+							                 	창고명 <input type="text" /><br>
+							                 	위치명 <input type="text" /><br>
+							                 	창고명 <input type="text" /><br>
+							                 	창고명 <input type="text" /><br>
+							                 	창고명 <input type="text" /><br>
+							                </form>
+							            </div>
+							           <!-- 창고 상세 정보 모달 footer 시작 -->
+							            <div class="modal-footer">
+							                <button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
+							            </div>
+							           <!-- 창고 상세 정보 모달 footer 끝 -->
+							        </div>
+							    </div>
+							</div>
+							<!-- 창고 상세 정보 모달 끝 -->
 					   </td>
 					</tr>
                   </tbody>
@@ -259,49 +308,46 @@
                 </table>
               </div>
               
-                <!-- 모달 버튼 -->
+                <!-- 창고 등록 모달 버튼 -->
 				<button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#warehouseModal">
 				    창고등록
 				</button>
-
-				<!-- 모달 -->
+				<!-- 창고 등록 모달 시작 -->
 				<div class="modal" id="warehouseModal" data-backdrop="static">
 				    <div class="modal-dialog">
 				        <div class="modal-content">
 				
-				            <!-- 모달 헤더 -->
+				            <!-- 창고 등록 모달 헤더 -->
 				            <div class="modal-header">
 				                <h4 class="modal-title">창고 등록</h4>
-<!-- 				                <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+				                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
 				            </div>
 				
-				            <!-- 모달 본문 -->
+				            <!-- 창고 등록 모달 본문 -->
 				            <div class="modal-body">
 				                <!-- 폼 입력 필드 -->
 				                <form id="warehouseForm">
-				                 	창고명 <input type="text" id="warehouseName" name="warehouseName" /><br>
-				                 	위치명 <input type="text" id="warehouseName" name="warehouseName" /><br>
-				                 	창고명 <input type="text" id="warehouseName" name="warehouseName" /><br>
-				                 	창고명 <input type="text" id="warehouseName" name="warehouseName" /><br>
-				                 	창고명 <input type="text" id="warehouseName" name="warehouseName" /><br>
-				                 	창고명 <input type="text" id="warehouseName" name="warehouseName" /><br>
-				                 	
-				                    
+				                 	창고명 <input type="text" name="warehouseName" /><br>
+				                 	위치명 <input type="text" name="warehouseName" /><br>
+				                 	창고명 <input type="text" name="warehouseName" /><br>
+				                 	창고명 <input type="text" name="warehouseName" /><br>
+				                 	창고명 <input type="text" name="warehouseName" /><br>
+				                 	창고명 <input type="text" name="warehouseName" /><br>
 				                    <button type="button" onclick="submitWarehouseForm()">창고 추가</button>
 				                </form>
 				            </div>
-				
-				           <!-- 모달 푸터 -->
+				           <!-- 창고 등록 모달 footer 시작 -->
 				            <div class="modal-footer">
 				                <button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
 				            </div>
-				
+				           <!-- 창고 등록 모달 footer 끝 -->
 				        </div>
 				    </div>
 				</div>
-				<!--모달 끝 -->
-				
+				<!-- 창고 등록 모달 끝 -->
             </div>
+            <!-- 메인테이블 영역 끝-->
+            
           </div>
         </div>
         
@@ -321,7 +367,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> 
       </footer>
       <!--footer 끝-->
     </div>
@@ -336,6 +382,7 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/smooth-scrollbar"></script>
+  <script src="/resources/js/plugins/warehouseMain.js"></script>
 
   <!-- warehouseMain Bootstrap JS and jQuery -->
 <!--   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->

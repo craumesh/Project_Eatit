@@ -15,4 +15,10 @@ public class WarehouseVO {
 	private String warehouse_note;
 	private String warehouse_updater;
 	private Timestamp warehouse_updatedate;
+	
+	// join에 필요한 값
+	private int member_no;
+	private String member_name;
+	private String member_contact;
+	private String member_email;
 }

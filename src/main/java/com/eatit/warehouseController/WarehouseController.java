@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.eatit.warehouseDomain.WarehouseVO;
 import com.eatit.warehouseService.WarehouseService;
@@ -28,11 +29,15 @@ public class WarehouseController {
 	public void wareHouseMainGET(Model model) {
 		logger.debug("C - wareHouseMainGET() 호출");
 		
-		// 서비스 - 창고 리스트 가져오기
-		List<WarehouseVO> warehouseList = warehouseService.warehouseListAll();
-		logger.debug("@_@"+warehouseList);
+		// 서비스 - 창고 리스트 가져오기(warehouse 상세 페이지)
+		List<WarehouseVO> warehouseListAll = warehouseService.warehouseListAll();
+		
+		// 서비스 - 창고 리스트 가져오기(warehouseMain)
+		List<WarehouseVO> warehouseListMain = warehouseService.warehouseListMain();
+		logger.debug("@_@"+warehouseListMain);
 		
 		// 데이터를 연결된 뷰페이지로 전달
-		model.addAttribute("warehouseList", warehouseList);
+		model.addAttribute("warehouseListMain", warehouseListMain);
+		model.addAttribute("warehouseListAll", warehouseListAll);
 	}
 }

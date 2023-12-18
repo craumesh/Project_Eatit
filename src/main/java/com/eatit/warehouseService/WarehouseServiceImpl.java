@@ -19,13 +19,29 @@ public class WarehouseServiceImpl implements WarehouseService {
 	
 	@Inject
 	private WarehouseDAO warehousedao;
-
+	
 	@Override
+	// 창고 정보 리스트 가져오기(All)
 	public List<WarehouseVO> warehouseListAll() {
 		logger.debug("S - warehouseListAll() 호출");
-		
 		return warehousedao.getWarehouseListAll();
 	}
+
+	@Override
+	// 창고 정보 가져오기(main)
+	public List<WarehouseVO> warehouseListMain() {
+		logger.debug("S - warehouseListMain() 호출");
+		return warehousedao.getWarehouseListMain();
+	}
+
+	@Override
+	// 특정 창고 정보 가져오기
+	public List<WarehouseVO> warehouseInfo(int warehouse_no) {
+		logger.debug("S - warehouseInfo() 호출");
+		return warehousedao.getWarehouseInfo(warehouse_no);
+	}
+	
+	
 	
 	
 }

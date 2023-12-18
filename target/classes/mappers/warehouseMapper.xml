@@ -5,8 +5,22 @@
   
   <mapper namespace="com.eatit.mapper.warehouseMapper">
   	<!--창고 정보 리스트 조회 -->
-  	<select id="getWarehouseList" resultType="WarehouseVO">
+  	<select id="getWarehouseListAll" resultType="WarehouseVO">
   		select * from warehouse
+  	</select>
+  	
+  	<!--창고 정보 리스트 조회(main) -->
+  	<select id="getWarehouseMainList" resultType="WarehouseVO">
+  		select warehouse_no, warehouse_location_name, warehouse_name,warehouse_sortation,
+  		m.member_name,warehouse_use_status 
+  		from warehouse w join member m 
+  		on w.warehouse_admin_no=m.member_no;
+  	</select>
+  	
+  	<!--특정 창고 정보 조회-->
+  	<select id="getWarehouseInfo" resultType="WarehouseVO">
+  		select * from warehouse 
+  		where warehouse_no = #{NO}
   	</select>
   </mapper>	  
   
