@@ -31,6 +31,7 @@ public class WarehouseController {
 		
 		// 서비스 - 창고 리스트 가져오기(warehouse 상세 페이지)
 		List<WarehouseVO> warehouseListAll = warehouseService.warehouseListAll();
+		logger.debug("@_@"+warehouseListAll);
 		
 		// 서비스 - 창고 리스트 가져오기(warehouseMain)
 		List<WarehouseVO> warehouseListMain = warehouseService.warehouseListMain();
