@@ -36,9 +36,11 @@ public class WarehouseServiceImpl implements WarehouseService {
 
 	@Override
 	// 특정 창고 정보 가져오기
-	public List<WarehouseVO> warehouseInfo(int warehouse_no) {
+	public WarehouseVO warehouseInfo(WarehouseVO vo) {
 		logger.debug("S - warehouseInfo() 호출");
-		return warehousedao.getWarehouseInfo(warehouse_no);
+		logger.debug("S vo : " +vo);
+		logger.debug("S 전달해주는 : "+warehousedao.getWarehouseInfo(vo));
+		return warehousedao.getWarehouseInfo(vo);
 	}
 	
 	

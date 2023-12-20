@@ -37,9 +37,11 @@ public class WarehouseDAOImpl implements WarehouseDAO {
 
 	@Override
 	// 특정 창고 정보 가져오기
-	public List<WarehouseVO> getWarehouseInfo(int warehouse_no) {
-		logger.debug("DAO - getWarehouseInfo(int warehouse_no)");
-		return sqlsession.selectOne(NAMESPACE+"getWarehouseInfo", warehouse_no);
+	public WarehouseVO getWarehouseInfo(WarehouseVO vo) {
+		logger.debug("DAO - getWarehouseInfo(WarehouseVO vo)");
+		logger.debug("DAO vo : "+vo);
+		logger.debug("DAO 전달해주는 vo : "+sqlsession.selectOne(NAMESPACE+"getWarehouseInfo", vo));
+		return sqlsession.selectOne(NAMESPACE+"getWarehouseInfo", vo);
 	}
 	
 	

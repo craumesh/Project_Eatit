@@ -13,5 +13,5 @@ public interface WarehouseService {
 	public List<WarehouseVO> warehouseListMain();
 	
 	// 특정 창고 정보 가져오기
-	public List<WarehouseVO> warehouseInfo(int warehouse_no);
+	public WarehouseVO warehouseInfo(WarehouseVO vo);
 }

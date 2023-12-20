@@ -13,5 +13,5 @@ public interface WarehouseDAO {
 	public List<WarehouseVO> getWarehouseListMain();
 	
 	// 특정 창고 정보 가져오기
-	public List<WarehouseVO> getWarehouseInfo(int warehouse_no);
+	public WarehouseVO getWarehouseInfo(WarehouseVO vo);
 }

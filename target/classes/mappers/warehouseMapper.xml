@@ -16,10 +16,12 @@
 		on w.admin_no=m.employee_no;
   	</select>
   	
-  	<!--특정 창고 정보 조회-->
+  	<!--특정 창고 정보 조회(Ajax)-->
   	<select id="getWarehouseInfo" resultType="WarehouseVO">
-  		select * from warehouse 
-  		where warehouse_no = #{NO}
+  		select warehouse_no, location_name, warehouse_name, category, admin_no, use_status, note, updater, updatedate, name, contact, email 
+  		from warehouse w join member m
+  		on w.admin_no = m.employee_no
+  		where warehouse_no = #{warehouse_no};
   	</select>
   </mapper>	  
   
