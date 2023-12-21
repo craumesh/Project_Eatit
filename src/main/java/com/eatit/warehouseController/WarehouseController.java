@@ -26,8 +26,9 @@ public class WarehouseController {
 	private WarehouseService warehouseService;
 	
 	//http://localhost:8088/warehouse/warehouseMain
+	// 창고메인
 	@GetMapping(value = "/warehouseMain")
-	public void wareHouseMainGET(Model model) {
+	public void warehouseMainGET(Model model) {
 		logger.debug("C - wareHouseMainGET() 호출");
 		
 		// 서비스 - 창고 리스트 가져오기(warehouseMain)
@@ -38,5 +39,13 @@ public class WarehouseController {
 		model.addAttribute("warehouseListMain", warehouseListMain);
 	}
 	
+	// 창고등록
+	@RequestMapping(value = "/warehouseRegist", method = RequestMethod.GET)
+	public void warehouseModifyGET() {
+		logger.debug("C - warehouseModifyGET()");
+		
+		
+		
+	}
 	
 }

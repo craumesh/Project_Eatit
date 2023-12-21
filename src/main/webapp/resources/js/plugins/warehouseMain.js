@@ -1,3 +1,19 @@
+////////////////////// 팝업 중앙 정렬 ////////////////////////
+const width = 1920;
+const height = 1080;
+
+let left = (document.body.offsetWidth / 2) - (width / 2);
+let tops = (document.body.offsetHeight / 2) - (height / 2);
+
+left += window.screenLeft;
+
+function popup(){
+	window.open('/', 'popup', `width=${width}, height=${height}, left=${left}, top=${tops}`);
+}
+////////////////////// 팝업 중앙 정렬 ////////////////////////
+
+
+
 var modal = document.getElementById("warehouseModal");
 var span = document.getElementsByClassName("btn-close")[0];
 

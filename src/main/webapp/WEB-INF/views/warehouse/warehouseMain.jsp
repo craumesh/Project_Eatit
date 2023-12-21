@@ -32,7 +32,7 @@
 	            </div>
 	            <!-- 창고 상세 정보 모달 footer 시작 -->
 	            <div class="modal-footer">
-	                <button type="button" class="btn btn-primary" data-dismiss="modal">수정하기</button>
+	                <button type="button" class="btn btn-primary" onclick="location.href='/warehouse/warehouseUpdate'">수정하기</button>
 	            </div>
 	            <!-- 창고 상세 정보 모달 footer 끝 -->
 	        </div>
@@ -45,7 +45,7 @@
 		<div class="card my-4">
 			<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
 				<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-					<h6 class="text-white text-capitalize ps-3">창고 관리</h6>
+					<h6 class="text-white text-capitalize ps-3">창고 목록</h6>
 				</div>
 			</div>
 			<div class="card-body px-0 pb-2">
@@ -100,6 +100,10 @@
 						</tbody>	
 					</table>
 				</div>
+				<div>
+	                <button type="button" class="btn bg-gradient-primary" onclick="popup">창고등록</button>
+	                <button type="button" class="btn bg-gradient-primary" onclick="location.href='/warehouse/warehouseDelete'">창고삭제</button>
+	            </div>
 			</div>
 		</div>
 	</div>
