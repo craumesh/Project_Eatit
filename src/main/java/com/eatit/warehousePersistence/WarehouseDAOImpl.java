@@ -43,7 +43,5 @@ public class WarehouseDAOImpl implements WarehouseDAO {
 		logger.debug("DAO 전달해주는 vo : "+sqlsession.selectOne(NAMESPACE+"getWarehouseInfo", vo));
 		return sqlsession.selectOne(NAMESPACE+"getWarehouseInfo", vo);
 	}
-	
-	
 
 }

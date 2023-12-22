@@ -101,7 +101,7 @@
 					</table>
 				</div>
 				<div>
-	                <button type="button" class="btn bg-gradient-primary" onclick="popup">창고등록</button>
+	                <button type="button" class="btn bg-gradient-primary" onclick="popup();">창고등록</button>
 	                <button type="button" class="btn bg-gradient-primary" onclick="location.href='/warehouse/warehouseDelete'">창고삭제</button>
 	            </div>
 			</div>

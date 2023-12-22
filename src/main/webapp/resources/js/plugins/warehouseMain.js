@@ -1,14 +1,14 @@
 ////////////////////// 팝업 중앙 정렬 ////////////////////////
-const width = 1920;
-const height = 1080;
+function popup() {
+    const width = 720;
+    const height = 775;
 
-let left = (document.body.offsetWidth / 2) - (width / 2);
-let tops = (document.body.offsetHeight / 2) - (height / 2);
+    // 현재 창의 중앙 좌표 계산
+    const left = (window.innerWidth - width) / 2 + window.screenLeft;
+    const top = (window.innerHeight - height) / 2 + window.screenTop;
 
-left += window.screenLeft;
-
-function popup(){
-	window.open('/', 'popup', `width=${width}, height=${height}, left=${left}, top=${tops}`);
+    // 팝업 창 열기
+    window.open('/warehouse/warehouseRegist', 'popup', `width=${width}, height=${height}, left=${left}, top=${top}`);
 }
 ////////////////////// 팝업 중앙 정렬 ////////////////////////
 

@@ -23,5 +23,6 @@
   		on w.admin_no = m.employee_no
   		where warehouse_no = #{warehouse_no};
   	</select>
+  	
   </mapper>	  
   

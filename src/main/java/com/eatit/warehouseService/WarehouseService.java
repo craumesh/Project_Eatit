@@ -14,4 +14,5 @@ public interface WarehouseService {
 	
 	// 특정 창고 정보 가져오기
 	public WarehouseVO warehouseInfo(WarehouseVO vo);
+	
 }

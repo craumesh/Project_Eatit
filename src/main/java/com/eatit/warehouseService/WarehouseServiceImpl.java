@@ -42,8 +42,6 @@ public class WarehouseServiceImpl implements WarehouseService {
 		logger.debug("S 전달해주는 : "+warehousedao.getWarehouseInfo(vo));
 		return warehousedao.getWarehouseInfo(vo);
 	}
-	
-	
-	
+
 	
 }

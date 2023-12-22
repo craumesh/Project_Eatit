@@ -1,14 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="../include/header.jsp"%>
+<%-- <%@ include file="../include/header.jsp"%> --%>
 <%@ include file="../include/js.jsp"%>
-
-<script>
-    function openSearchProduct() {
-        // 새 창을 여는 코드
-        window.open('/product/search', '_blank', 'width=600,height=700');
-    }
-</script>
+<head>
+<meta charset="UTF-8">
+ <link rel="icon" type="image/png" href="${path}/resources/img/logo.png">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link href="/resources/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="/resources/css/nucleo-svg.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <link id="pagestyle" href="/resources/css/main.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
 
 <div class="card my-4">
 	<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
