@@ -24,16 +24,15 @@
 		<div class="card-body">
 			<!-- 폼테그 시작  -->
 			<form role="form" method="post">
-			<input type="hidden" name="company_no" value="1">
-			<input type="hidden" name="member_no" value="1">
-			<input type="hidden" name="product_no" value="1">
+			<input type="hidden" name="admin_no" value="${warehouseAdminInfo.employee_no}">
 				<!-- 거래처 정보 -->
 				<div class="row mb-4">
 					<div class="card">
 						<div class="card-header pb-0">
 							<div class="row">
 								<div class="col-lg-6 col-7">
-									<h6>거래처</h6>
+									<h6>관리자 정보</h6>
+<%-- 									${warehouseAdminInfo} --%>
 								</div>
 							</div>
 						</div>
@@ -42,38 +41,30 @@
 								<table class="table align-items-center mb-0">
 									<thead>
 										<tr>
-											<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">회사 정보</th>
-											<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">매니저</th>
-											<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">주소</th>
+											<th class="text-uppercase text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"" >관리자 이름</th>
+											<th class="text-uppercase text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">연락처</th>
+											<th class="text-uppercase text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">이메일</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
 											<td>
 												<div class="d-flex px-2 py-1">
-													<div>
-														<img src="" class="avatar avatar-sm me-3" alt="">
-													</div>
 													<div class="d-flex flex-column justify-content-center">
-														<h6 class="mb-0 text-sm">거래처 이름 출력란</h6>
-														<p class="text-xs text-secondary mb-0">거래처 전화번호 출력란</p>
+														<h6 class="mb-0 text-sm">${warehouseAdminInfo.name}</h6>
 													</div>
 												</div>
 											</td>
 											<td>
 												<div class="d-flex px-2 py-1">
-													<div>
-														<img src="" class="avatar avatar-sm me-3" alt="">
-													</div>
 													<div class="d-flex flex-column justify-content-center">
-														<h6 class="mb-0 text-sm">신청자 이름 출력란</h6>
-														<p class="text-xs text-secondary mb-0">신청자 전화번호 출력란</p>
+														<h6 class="mb-0 text-sm">${warehouseAdminInfo.contact}</h6>
 													</div>
 												</div>
 											</td>
 											<td class="align-middle">
-												<div class="progress-wrapper w-75 mx-auto">
-													<span class="text-xs font-weight-bold">거래처 주소 출력란</span>
+												<div class="d-flex flex-column justify-content-center">
+													<h6 class="mb-0 text-sm">${warehouseAdminInfo.email}</h6>
 												</div>
 											</td>
 										</tr>
@@ -89,72 +80,46 @@
 						<div class="card-header pb-0">
 							<div class="row">
 								<div class="col-lg-6 col-7">
-									<h6>주문상품</h6>
-								</div>
-								<div class="col-lg-6 col-5 my-auto text-end">
-									<div class="dropdown float-lg-end pe-4">
-										<button class="btn btn-dark border-radius-lg p-2 mt-n4 mt-md-0" type="button" onclick="openSearchProduct()">
-											<i class="material-icons p-2">search</i>
-										</button>
-									</div>
+									<h6>창고정보 입력</h6>
 								</div>
 							</div>
 						</div>
 						<div class="card-body px-0 pb-2">
 							<div class="table-responsive">
 								<table class="table align-items-center mb-0">
-									<thead>
-										<tr>
-											<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-												<div class="form-check form-check-info text-start ps-0">
-													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" data-gtm-form-interact-field-id="0">
-												</div>
-											</th>
-											<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">제품</th>
-											<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">수량</th>
-											<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">재고량</th>
-											<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">수정/삭제</th>
-										</tr>
-									</thead>
 									<tbody>
 										<tr>
-											<td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-												<div class="form-check form-check-info text-start ps-0">
-													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" data-gtm-form-interact-field-id="0">
-												</div>
-											</td>				
 											<td>
-												<div class="d-flex px-2 py-1">
-													<div>
-														<img src="" class="avatar avatar-sm me-3" alt="">
-													</div>
-													<div class="d-flex flex-column justify-content-center">
-														<h6 class="mb-0 text-sm">제품 이름 출력란</h6>
-													</div>
+												<div class="input-group input-group-dynamic mb-4">
+												    <input type="text" name="location_name"
+												    class="form-control" placeholder="위치명" aria-label="위치명" aria-describedby="basic-addon1">
 												</div>
 											</td>
 											<td class="align-middle text-start text-sm">
-												<span class="text-xs font-weight-bold">XX개</span>
-											</td>
-											<td class="align-middle text-center">
-												<div class="d-flex align-items-center justify-content-center">
-													<span class="me-2 text-xs font-weight-bold">60%</span>
-													<div>
-														<div class="progress">
-															<div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-														</div>
-													</div>
+												<div class="input-group input-group-dynamic mb-4">
+												    <input type="text" name="warehouse_name"
+												    class="form-control" placeholder="창고명" aria-label="창고명" aria-describedby="basic-addon1">
 												</div>
 											</td>
+<!-- 											<td class="align-middle text-center"> -->
+<!-- 												<div class="input-group input-group-dynamic mb-4"> -->
+<!-- 												    <input type="text" class="form-control" placeholder="구분" aria-label="구분" aria-describedby="basic-addon1"> -->
+<!-- 												</div> -->
+<!-- 											</td> -->
 											<td class="align-middle text-center">
-												<a class="btn btn-link text-dark px-3 mb-0" href="./update">
-													<i class="material-icons text-sm me-2">edit</i>
-													Edit
-												</a>
-												<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="./delete">
-													<i class="material-icons text-sm me-2">delete</i>
-													Delete
-												</a>
+<!-- 												<div class="dropdown"> -->
+<!-- 												  <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!-- 												    구분 -->
+<!-- 												  </button> -->
+<!-- 												  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"> -->
+<!-- 												    <li><a class="dropdown-item" href="#">자재</a></li> -->
+<!-- 												    <li><a class="dropdown-item" href="#">완재품</a></li> -->
+<!-- 												  </ul> -->
+<!-- 												</div>	 -->
+												<select class="form-control" name="category" id="choices-button" placeholder="Departure">
+												  <option value="자재" selected="">자재</option>
+												  <option value="완재품">완재품</option>
+												</select>
 											</td>
 										</tr>
 									</tbody>
@@ -169,16 +134,10 @@
 						<div class="card-header pb-0">
 							<div class="row">
 								<div class="col-lg-6 col-7">
-									<h6>희망 납기일</h6>
+									<h6>비고</h6>
 								</div>
-								<div class="input-group input-group-outline mb-3">
-									<input class="form-control" type="date" name="due_date">
-								</div>
-								<div class="col-lg-6 col-7">
-									<h6>요청사항</h6>
-								</div>
-								<div class="input-group input-group-outline mb-3">
-									<textarea class="form-control" rows="7" placeholder="요청사항을 입력하세요" name="comments"></textarea>
+								<div class="input-group input-group-outline mb-3" style="padding-left: 0; padding-right: 0;">
+									<textarea class="form-control" rows="7" placeholder="내용을 입력하세요" name="note"></textarea>
 								</div>	
 							</div>
 						</div>

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.eatit.memberDomain.MemberVO;
 import com.eatit.warehouseDomain.WarehouseVO;
 
 @Repository
@@ -43,5 +44,23 @@ public class WarehouseDAOImpl implements WarehouseDAO {
 		logger.debug("DAO 전달해주는 vo : "+sqlsession.selectOne(NAMESPACE+"getWarehouseInfo", vo));
 		return sqlsession.selectOne(NAMESPACE+"getWarehouseInfo", vo);
 	}
+
+	@Override
+	// 특정 창고 정보 가져오기(세션 아이디에 해당하는 회원정보)
+	public MemberVO getWarehouseInfo(int no) {
+		logger.debug("DAO - getWarehouseInfo(int no)");
+		return sqlsession.selectOne(NAMESPACE+"getWarehouseAdminInfo", no);
+	}
+
+	@Override
+	// 창고 등록
+	public void insertWarehouse(WarehouseVO vo) {
+		logger.debug("DAO - insertWarehouse(WarehouseVO vo)");
+		sqlsession.insert(NAMESPACE+"insertWarehouse", vo);
+	}
+	
+	
+	
+	
 
 }

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.eatit.memberDomain.MemberVO;
 import com.eatit.warehouseDomain.WarehouseVO;
 import com.eatit.warehousePersistence.WarehouseDAO;
 
@@ -37,11 +38,28 @@ public class WarehouseServiceImpl implements WarehouseService {
 	@Override
 	// 특정 창고 정보 가져오기
 	public WarehouseVO warehouseInfo(WarehouseVO vo) {
-		logger.debug("S - warehouseInfo() 호출");
+		logger.debug("S - warehouseInfo(WarehouseVO vo) 호출");
 		logger.debug("S vo : " +vo);
 		logger.debug("S 전달해주는 : "+warehousedao.getWarehouseInfo(vo));
 		return warehousedao.getWarehouseInfo(vo);
 	}
 
+	@Override
+	// 창고 등록 할 때 등록페이지에 로그인한 회원 정보 가져오기
+	public MemberVO warehouseInfo(int no) {
+		logger.debug("S - warehouseInfo(int no)");
+		return warehousedao.getWarehouseInfo(no);
+	}
+
+	@Override
+	// 창고 등록
+	public void warehouseRegist(WarehouseVO vo) {
+		logger.debug("S - warehouseRegist(WarehouseVO vo)");
+		warehousedao.insertWarehouse(vo);
+	}
+	
+	
+	
+	
 	
 }

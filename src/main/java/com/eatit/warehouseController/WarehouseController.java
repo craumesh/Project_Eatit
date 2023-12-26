@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.eatit.memberDomain.MemberVO;
 import com.eatit.warehouseDomain.WarehouseVO;
 import com.eatit.warehouseService.WarehouseService;
 
@@ -47,9 +48,26 @@ public class WarehouseController {
 	
 	// 창고등록
 	@RequestMapping(value = "/warehouseRegist", method = RequestMethod.GET)
-	public void warehouseModifyGET(/* HttpSession session */ @SessionAttribute("no") int no) {
+	public void warehouseModifyGET(@SessionAttribute("no") int no,Model model) {
 		logger.debug("C - warehouseModifyGET()");
 		logger.debug("no : "+ no);
+		
+		// 서비스 - 창고 등록 할 때 등록페이지에 로그인한 회원 정보 가져오기
+		MemberVO warehouseInfo = warehouseService.warehouseInfo(no);
+		logger.debug("@_@"+warehouseInfo);
+		// 데이터를 연결된 뷰페이지로 전달
+		model.addAttribute("warehouseAdminInfo", warehouseInfo);
+	}
+	
+	@RequestMapping(value = "/warehouseRegist", method = RequestMethod.POST)
+	public String warehouseModifyPOST(WarehouseVO vo) {
+		logger.debug("C - warehouseModifyPOST()");
+		logger.debug("vo : "+vo);
+		
+		// 서비스 - 창고 등록
+		warehouseService.warehouseRegist(vo);
+		
+		return "redirect:/warehouse/warehouseMain";
 	}
 	
 }

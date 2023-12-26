@@ -24,5 +24,15 @@
   		where warehouse_no = #{warehouse_no};
   	</select>
   	
+  	<!--세션 아이디에 해당하는 회원정보-->
+  	<select id="getWarehouseAdminInfo" resultType="MemberVO">
+  		select employee_no, name, contact, email from member where employee_no = #{no} 
+  	</select>
+  	
+  	<!--창고 등록-->
+  	<select id="insertWarehouse">
+  		insert into warehouse(location_name,warehouse_name,category,admin_no,note) 
+  		values(#{location_name},#{warehouse_name},#{category},#{admin_no},#{note})
+  	</select>
   </mapper>	  
   
