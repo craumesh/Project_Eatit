@@ -12,8 +12,7 @@ function popup() {
 }
 ////////////////////// 팝업 중앙 정렬 ////////////////////////
 
-
-
+/////////////////////// 상세 페이지(모달) ////////////////////
 var modal = document.getElementById("warehouseModal");
 var span = document.getElementsByClassName("btn-close")[0];
 
@@ -46,13 +45,61 @@ $(document).ready(function() {
         });
     });
 
-    $(".btn-close").click(function() {
-        modal.style.display = "none";
-    });
+    $("#closebtn").click(function(){
+		modal.style.display = "none";
+		location.reload();
+	});
+    
+    $("#editbtn").click(function(){
+		if ($("#edit-table").hasClass("d-none")) {
+			$("#view-table").toggleClass("d-none");
+		    $("#edit-table").toggleClass("d-none");	
+			$("#editbtn").text("수정 완료");
+		    getEditInfo();
+		} else {
+			swal({
+				  title: "정말 수정하시겠습니까?",
+				  text: "이 사람도 누군가의 가장입니다",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+					swal("당신은 정말 잔인한 사람이에요!", {icon: "success"}).then(function(){
+						$("#closebtn").click(); 
+						$("#edit-form").submit();                
+					});							
+				  } else {
+				    swal("우유부단 하시군요!");
+				  }
+			});		    
+		}		    
+	});
 
     $(window).click(function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
+            location.reload();
         }
+        
+        if (!$(event.target).closest('.input-group').length) {
+	        $(".input-group").removeClass("focused is-focused");
+	    }
     });
+    
+    $(".input-group").click(function(){
+		$(this).addClass("focused is-focused");
+	});
+    
+    function getEditInfo() {
+    	$("#category-input").val($("#category").text());
+    	$("#warehouse_name-input").val($("#warehouse_name").text());
+		$("#name-input").val($("#name").text());
+		$("#contact-input").val($("#contact").text());
+		$("#email-input").val($("#email").text());
+		$("#note-input").val($("#note").text());
+	}
+    
 });
+/////////////////////// 상세 페이지(모달) ////////////////////

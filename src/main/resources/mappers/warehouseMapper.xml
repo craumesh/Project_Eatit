@@ -11,7 +11,7 @@
   	
   	<!--창고 정보 리스트 조회(main) -->
   	<select id="getWarehouseMainList" resultType="WarehouseVO">
-  		SELECT warehouse_no,location_name,warehouse_name,category,m.name,use_status
+  		SELECT warehouse_no,location_name,warehouse_name,category,w.admin_no,m.name,use_status
 		FROM warehouse w JOIN member m
 		on w.admin_no=m.employee_no
 		order by warehouse_no asc;
@@ -35,5 +35,7 @@
   		insert into warehouse(location_name,warehouse_name,category,admin_no,note) 
   		values(#{location_name},#{warehouse_name},#{category},#{admin_no},#{note})
   	</select>
+  	
+  	<!--창고 수정  -->
   </mapper>	  
   

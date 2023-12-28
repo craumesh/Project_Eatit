@@ -12,7 +12,10 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link id="pagestyle" href="/resources/css/main.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+<body class="g-sidenav-show  bg-gray-200">
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 
 <div class="card my-4">
 	<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -23,7 +26,7 @@
 	<div class="card-body px-0 pb-2">
 		<div class="card-body">
 			<!-- 폼테그 시작  -->
-			<form role="form" method="post">
+			<form role="form" method="post" name="registForm">
 			<input type="hidden" name="admin_no" value="${warehouseAdminInfo.employee_no}">
 				<!-- 거래처 정보 -->
 				<div class="row mb-4">
@@ -74,7 +77,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- 상품 정보 -->
+				<!-- 창고 정보 -->
 				<div class="row mb-4">
 					<div class="card">
 						<div class="card-header pb-0">
@@ -128,7 +131,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- 고객 요청 사항 -->
+				<!-- 비고 -->
 				<div class="row mb-4">
 					<div class="card">
 						<div class="card-header pb-0">
@@ -143,9 +146,9 @@
 						</div>
 					</div>
 				</div>
-				<!-- 버튼 -->
+				<!-- 등록 버튼 -->
 				<div class="text-center">
-					<button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">등록하기</button>
+					<button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" onclick="registAlert()">등록하기</button>
 				</div>
 			</form>
 		</div>
@@ -153,3 +156,14 @@
 </div>
 
 <%@ include file="../include/footer.jsp"%>
+<script>
+function registAlert(){
+	swal("창고 등록 완료","","success");
+	
+	setTimeout(function() {
+	  document.forms["registForm"].submit();
+	}, 700);
+	
+}
+</script>
+<script src="/resources/js/plugins/warehouseMain.js"></script>
