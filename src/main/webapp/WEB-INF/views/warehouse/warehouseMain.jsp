@@ -3,43 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@ include file="../include/header.jsp"%>
-<!-- 창고 상세 정보 모달 시작 -->
-<!-- 	<div class="modal" id="warehouseModal" data-backdrop="static"> -->
-<!-- 	    <div class="modal-dialog"> -->
-<!-- 	        <div class="modal-content"> -->
-<!-- 	            창고 상세 정보 모달 헤더 -->
-<!-- 	            <div class="modal-header"> -->
-<!-- 	                <h4 class="modal-title">창고 상세 정보</h4> -->
-<!-- 	                <button class="btn-close end-3"></button> -->
-<!-- 	            </div> -->
-<!-- 	            창고 상세 정보 모달 본문 -->
-<!-- 	            <div > -->
-<!-- 	                <div id="warehouse_info"> -->
-<!-- 	                    각각의 ID를 할당 -->
-<!-- 	                    창고번호 : <span id="warehouse_no"></span><br> -->
-<!-- 	                    위치명 : <span id="location_name"></span><br> -->
-<!-- 	                    구분 : <span id="category"></span><br> -->
-<!-- 	                    창고명 : <span id="warehouse_name"></span><br> -->
-<!-- 	                    관리자 : <span id="name"></span><br> -->
-<!-- 	                    전화번호 : <span id="contact"></span><br> -->
-<!-- 	                    이메일 : <span id="email"></span><br> -->
-<!-- 	                    사용여부 : <span id="use_status"></span><br> -->
-<!-- 	                    비고 : <span id="note"></span><br> -->
-<!-- 	                    수정자 : <span id="updater"></span><br> -->
-<!-- 	                    수정일자 : <span id="updatedate"></span><br> -->
-<!-- 	                </div> -->
-<!-- 	            </div> -->
-<!-- 	            창고 상세 정보 모달 footer 시작 -->
-<!-- 	            <div class="modal-footer"> -->
-<!-- 	                <button type="button" class="btn btn-primary" onclick="location.href='/warehouse/warehouseUpdate'">수정하기</button> -->
-<!-- 	            </div> -->
-<!-- 	            창고 상세 정보 모달 footer 끝 -->
-<!-- 	        </div> -->
-<!-- 	    </div> -->
-<!-- 	</div> -->
-<!-- 창고 상세 정보 모달 끝 -->
+
 <!-- 창고 상세 모달2 시작  -->
-<div class="modal" id="warehouseModal" class="modal top-10 position-absolute">
+<div class="modal" id="warehouseModal" class="modal top-10 position-absolute h-auto">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -177,13 +143,17 @@
 					<h6 class="text-white text-capitalize ps-3">창고 목록</h6>
 				</div>
 			</div>
+			
 			<div class="card-body px-0 pb-2">
 				<div class="table-responsive p-0">
+					<form role="form" method="post">
 					<table class="table align-items-center mb-0">
 					
 						<thead>
 							<tr>
-								<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 "><input type="checkbox"></th>
+								<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">
+									<input type="checkbox" id="cbx_chkAll">
+								</th>
 								<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">창고번호</th>
 								<th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">구분</th>
 								<th class="text-center text-secondary text-xxs font-weight-bolder opacity-7 ">창고명</th>
@@ -197,7 +167,7 @@
 							<c:forEach var="warehouseListMain" items="${warehouseListMain}">
 								<tr>
 									<td class="text-uppercase text-secondary text-xxs font-weight-bold opacity-7" style="padding: 0.75rem 1.5rem;">
-										<input type="checkbox">
+										<input type="checkbox" name="chk" value="${warehouseListMain.warehouse_no}">
 									</td>
 									<td class="text-center">
                       					<span class="text-secondary text-xs font-weight-bold">${warehouseListMain.warehouse_no}</span>
@@ -227,10 +197,11 @@
 							</c:forEach>
 						</tbody>	
 					</table>
+					</form>
 				</div>
 				<div>
 	                <button type="button" class="btn bg-gradient-primary" onclick="popup();">창고등록</button>
-	                <button type="button" class="btn bg-gradient-primary" onclick="location.href='/warehouse/warehouseDelete'">창고삭제</button>
+	                <button type="button" id="deleteBtn" class="btn bg-gradient-primary" >창고삭제</button>
 	            </div>
 			</div>
 		</div>
@@ -238,4 +209,18 @@
 <!--본문 종료  -->
 <%@ include file="../include/footer.jsp"%>
 <%@ include file="../include/js.jsp"%>
+<script type="text/javascript">
+$(document).ready(function(){
+		
+		var formObj = $("form[role='form']");
+	
+		// 삭제 버튼 클릭시, 창고 번호를 사용해서 삭제 처리
+		$("#deleteBtn").click(function(){
+			formObj.attr("action","/warehouse/deleteWarehouse");
+			formObj.submit();
+		});
+		
+		
+	});
+</script>
 <script src="/resources/js/plugins/warehouseMain.js"></script>

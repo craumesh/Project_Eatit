@@ -21,4 +21,7 @@ public interface WarehouseService {
 	
 	// 창고 등록 
 	public void warehouseRegist(WarehouseVO vo);
+	
+	// 창고 삭제
+	public void deleteWarehouse(List warehouse_no);
 }

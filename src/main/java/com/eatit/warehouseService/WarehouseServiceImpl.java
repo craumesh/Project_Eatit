@@ -57,6 +57,13 @@ public class WarehouseServiceImpl implements WarehouseService {
 		logger.debug("S - warehouseRegist(WarehouseVO vo)");
 		warehousedao.insertWarehouse(vo);
 	}
+
+	@Override
+	// 창고 삭제
+	public void deleteWarehouse(List warehouse_no) {
+		logger.debug("S - deleteWarehouse(WarehouseVO vo)");
+		warehousedao.deleteWarehouse(warehouse_no);
+	}
 	
 	
 	

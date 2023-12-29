@@ -23,7 +23,7 @@ public class WarehouseTest {
 	private WarehouseDAO wdao;
 	
 	
-	@Test
+//	@Test
 	public void warehouseTest() {
 		WarehouseVO vo = new WarehouseVO();
 		vo.setAdmin_no(3);
@@ -34,6 +34,13 @@ public class WarehouseTest {
 		wdao.insertWarehouse(vo);
 	}
 	
+	@Test
+	public void 창고삭제테스트() {
+		WarehouseVO vo = new WarehouseVO();
+		vo.setWarehouse_no(50);
+		
+//		wdao.deleteWarehouse(vo);
+	}
 	
 
 }

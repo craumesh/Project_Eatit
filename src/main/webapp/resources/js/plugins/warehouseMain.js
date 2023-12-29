@@ -17,6 +17,22 @@ var modal = document.getElementById("warehouseModal");
 var span = document.getElementsByClassName("btn-close")[0];
 
 $(document).ready(function() {
+	
+	// 체크박스 선택
+	$("#cbx_chkAll").click(function() {
+		if ($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
+		else $("input[name=chk]").prop("checked", false);
+	});
+
+	$("input[name=chk]").click(function() {
+		var total = $("input[name=chk]").length;
+		var checked = $("input[name=chk]:checked").length;
+
+		if (total != checked) $("#cbx_chkAll").prop("checked", false);
+		else $("#cbx_chkAll").prop("checked", true);
+	});
+	// 체크박스 선택
+	
     $(".warehouseDetailBtn").on("click", function() {
         var value = $(this).val();
 //        console.log(value);
@@ -103,3 +119,19 @@ $(document).ready(function() {
     
 });
 /////////////////////// 상세 페이지(모달) ////////////////////
+
+
+//window.addEventListener('load', () => {
+//  const forms = document.getElementsByClassName('validation-form');
+//
+//  Array.prototype.filter.call(forms, (form) => {
+//    form.addEventListener('submit', function (event) {
+//      if (form.checkValidity() === false) {
+//        event.preventDefault();
+//        event.stopPropagation();
+//      }
+//
+//      form.classList.add('was-validated');
+//    }, false);
+//  });
+//}, false);

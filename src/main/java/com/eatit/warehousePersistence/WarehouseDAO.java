@@ -21,4 +21,7 @@ public interface WarehouseDAO {
 	
 	// 창고 등록
 	public void insertWarehouse(WarehouseVO vo);
+	
+	// 창고 삭제
+	public void deleteWarehouse(List warehouse_no);
 }

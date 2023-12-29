@@ -36,6 +36,11 @@
   		values(#{location_name},#{warehouse_name},#{category},#{admin_no},#{note})
   	</select>
   	
-  	<!--창고 수정  -->
+  	<!--창고 수정-->
+  	
+  	<!--창고 삭제-->
+  	<delete id="deleteWarehouse">
+  		delete from warehouse where warehouse_no=#{warehouse_no}
+  	</delete>
   </mapper>	  
   

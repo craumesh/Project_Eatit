@@ -10,8 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -83,10 +85,26 @@ public class WarehouseController {
 		return "redirect:/warehouse/registClose";
 	}
 	
+	// 창고삭제
+//	@GetMapping(value = "/deleteWarehouse")
+//	public String deleteWarehouseGET() {
+//		logger.debug("C - deleteWarehouseGET()");
+//		return "/warehouse/delete";
+//	}
+
+	@RequestMapping(value = "/deleteWarehouse", method = RequestMethod.POST)
+	public String deleteWarehousePOST(@RequestParam("chk") List warehouse_no) {
+		logger.debug("C - deleteWarehousePOST()");
+		logger.debug("vo : "+warehouse_no);
+		
+		// 서비스 - 창고 삭제
+		warehouseService.deleteWarehouse(warehouse_no);
+		
+		return "redirect:/warehouse/warehouseMain";
+	}
 	
 	
-	
-	// 창닫기 전용 페이지
+	// 등록 후 창닫기 전용 페이지
 	@GetMapping(value = "/registClose")
 	public void registClose() {
 		logger.debug("C - registClose()");
