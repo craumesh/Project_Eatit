@@ -29,6 +29,30 @@ public class WarehouseServiceImpl implements WarehouseService {
 	}
 
 	@Override
+	// 회원 정보 리스트 가져오기(All)
+	public List<MemberVO> memberListAll() {
+		return warehousedao.getMemberListAll();
+	}
+
+	@Override
+	// 회원 직책 리스트 가져오기 - ajax
+	public List<String> memberGetPositionName() {
+		return warehousedao.getPositionName();
+	}
+
+	@Override
+	// 직책에 해당하는 회원이름 리스트 가져오기 - ajax
+	public List<String> getMembersOfposition(String position_name) {
+		return warehousedao.getMembersOfPosition(position_name);
+	}
+	
+	@Override
+	// 이름에 해당하는 회원정보 리스트 가져오기 - ajax
+	public List<MemberVO> getMemberInfoByName(String name) {
+		return warehousedao.getMemberInfoByName(name);
+	}
+
+	@Override
 	// 창고 정보 가져오기(main)
 	public List<WarehouseVO> warehouseListMain() {
 		logger.debug("S - warehouseListMain() 호출");
@@ -36,7 +60,7 @@ public class WarehouseServiceImpl implements WarehouseService {
 	}
 
 	@Override
-	// 특정 창고 정보 가져오기
+	// 특정 창고 정보 가져오기 - ajax
 	public WarehouseVO warehouseInfo(WarehouseVO vo) {
 		logger.debug("S - warehouseInfo(WarehouseVO vo) 호출");
 		logger.debug("S vo : " +vo);
@@ -60,8 +84,8 @@ public class WarehouseServiceImpl implements WarehouseService {
 
 	@Override
 	// 창고 삭제
-	public void deleteWarehouse(List warehouse_no) {
-		logger.debug("S - deleteWarehouse(WarehouseVO vo)");
+	public void deleteWarehouse(int[] warehouse_no) {
+		logger.debug("S - deleteWarehouse(int[] warehouse_no)");
 		warehousedao.deleteWarehouse(warehouse_no);
 	}
 	

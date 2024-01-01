@@ -16,7 +16,6 @@
 </head>
 <body class="g-sidenav-show  bg-gray-200">
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-
 <div class="card my-4">
 	<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
 		<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
@@ -104,25 +103,13 @@
 												    class="form-control" placeholder="창고명" aria-label="창고명" aria-describedby="basic-addon1">
 												</div>
 											</td>
-<!-- 											<td class="align-middle text-center"> -->
-<!-- 												<div class="input-group input-group-dynamic mb-4"> -->
-<!-- 												    <input type="text" class="form-control" placeholder="구분" aria-label="구분" aria-describedby="basic-addon1"> -->
-<!-- 												</div> -->
-<!-- 											</td> -->
 											<td class="align-middle text-center">
-<!-- 												<div class="dropdown"> -->
-<!-- 												  <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"> -->
-<!-- 												    구분 -->
-<!-- 												  </button> -->
-<!-- 												  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"> -->
-<!-- 												    <li><a class="dropdown-item" href="#">자재</a></li> -->
-<!-- 												    <li><a class="dropdown-item" href="#">완재품</a></li> -->
-<!-- 												  </ul> -->
-<!-- 												</div>	 -->
-												<select class="form-control" name="category" id="choices-button" placeholder="Departure">
-												  <option value="자재" selected="">자재</option>
-												  <option value="완재품">완재품</option>
-												</select>
+												<div class="input-group input-group-dynamic mb-4 ">
+													<select class="form-control" name="category" id="choices-button" >
+													  <option value="자재" selected>자재</option>
+													  <option value="완재품" >완재품</option>
+													</select>
+												</div>
 											</td>
 										</tr>
 									</tbody>
@@ -154,11 +141,15 @@
 		</div>
 	</div>
 </div>
-
 <%@ include file="../include/footer.jsp"%>
 <script>
 function registAlert(){
-	swal("창고 등록 완료","","success");
+	swal({
+		text: "창고 등록 완료",
+		icon: "success",
+		buttons: false
+	});
+	
 	
 	setTimeout(function() {
 	  document.forms["registForm"].submit();

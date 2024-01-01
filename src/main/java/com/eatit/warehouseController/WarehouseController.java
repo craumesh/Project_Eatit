@@ -3,14 +3,12 @@ package com.eatit.warehouseController;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,17 +33,25 @@ public class WarehouseController {
 	@GetMapping(value = "/warehouseMain")
 	public void warehouseMainGET(Model model,@SessionAttribute("no") int no) {
 		logger.debug("C - wareHouseMainGET() 호출");
+		// ID 세션값 저장 확인
+//		logger.debug("no : "+no);
 		
-		// 서비스 - 창고 리스트 가져오기(warehouseMain)
+		// 서비스 - 창고 리스트 가져오기
 		List<WarehouseVO> warehouseListMain = warehouseService.warehouseListMain();
 		logger.debug("@_@"+warehouseListMain);
 		
-		// ID 세션값 저장 확인
-		logger.debug("no : "+no);
+		// 서비스 - 회원 리스트 가져오기
+		List<MemberVO> memberList = warehouseService.memberListAll();
+//		logger.debug("@_@"+memberList);
 		
+		// 서비스 - 직책 정보 가져오기
+		List<String> positionName = warehouseService.memberGetPositionName();
+//		logger.debug("@_@"+positionName);
 		
 		// 데이터를 연결된 뷰페이지로 전달
 		model.addAttribute("warehouseListMain", warehouseListMain);
+		model.addAttribute("memberList", memberList);
+		model.addAttribute("positionName", positionName);
 	}
 	
 	// 창고 모달창에서 정보 수정
@@ -85,15 +91,12 @@ public class WarehouseController {
 		return "redirect:/warehouse/registClose";
 	}
 	
+	// 창고 수정
+	
+	
 	// 창고삭제
-//	@GetMapping(value = "/deleteWarehouse")
-//	public String deleteWarehouseGET() {
-//		logger.debug("C - deleteWarehouseGET()");
-//		return "/warehouse/delete";
-//	}
-
 	@RequestMapping(value = "/deleteWarehouse", method = RequestMethod.POST)
-	public String deleteWarehousePOST(@RequestParam("chk") List warehouse_no) {
+	public String deleteWarehousePOST(@RequestParam("chk") int[] warehouse_no) {
 		logger.debug("C - deleteWarehousePOST()");
 		logger.debug("vo : "+warehouse_no);
 		

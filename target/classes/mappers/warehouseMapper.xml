@@ -9,6 +9,28 @@
   		select * from warehouse
   	</select>
   	
+  	<!--회원 정보 리스트 조회 -->
+  	<select id="getMemberListAll" resultType="MemberVO">
+  		select * from member
+  	</select>
+  	
+  	<!--직책 정보 가져오기(Ajax)-->
+	<select id="getPositionName" resultType="String">
+		select position_name
+		from member
+		group by position_name
+	</select>
+	
+	<!--직책에 해당하는 회원이름 리스트 가져오기(Ajax)-->
+	<select id="getMembersOfPosition" resultType="String">
+		select name from member where position_name =#{position_name}
+	</select>
+	
+	<!--이름에 해당하는 회원정보 리스트 가져오기(Ajax)-->
+	<select id="getMemberInfoByName" resultType="MemberVO">
+		select name, contact, email from member where name =#{name}
+	</select>
+	  	
   	<!--창고 정보 리스트 조회(main) -->
   	<select id="getWarehouseMainList" resultType="WarehouseVO">
   		SELECT warehouse_no,location_name,warehouse_name,category,w.admin_no,m.name,use_status
@@ -31,7 +53,7 @@
   	</select>
   	
   	<!--창고 등록-->
-  	<select id="insertWarehouse">
+  	<select id="insertWarehouse" >
   		insert into warehouse(location_name,warehouse_name,category,admin_no,note) 
   		values(#{location_name},#{warehouse_name},#{category},#{admin_no},#{note})
   	</select>
@@ -39,8 +61,11 @@
   	<!--창고 수정-->
   	
   	<!--창고 삭제-->
-  	<delete id="deleteWarehouse">
-  		delete from warehouse where warehouse_no=#{warehouse_no}
+  	<delete id="deleteWarehouse" parameterType="java.util.Map">
+  		delete from warehouse where warehouse_no in
+  		 <foreach collection="warehouse_no" item="no" open="(" separator="," close=")">
+            #{no}
+        </foreach>
   	</delete>
   </mapper>	  
   

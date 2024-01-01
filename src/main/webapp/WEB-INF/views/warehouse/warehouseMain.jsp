@@ -4,7 +4,7 @@
 
 <%@ include file="../include/header.jsp"%>
 
-<!-- 창고 상세 모달2 시작  -->
+<!-- 창고 상세 모달 시작  -->
 <div class="modal" id="warehouseModal" class="modal top-10 position-absolute h-auto">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -67,6 +67,7 @@
 						</tr>
 					</table>
 					
+					<!-- 수정폼 시작-->
 					<form id="edit-form" method="post">
 						<input type="hidden" name="admin_no" id="admin_no-forSubmit" value="${no}">
 						<table id="edit-table" class="d-none table">
@@ -88,12 +89,28 @@
 									</div>
 								</td>
 							</tr>
+							<tr>
+								<th class="fs-5">직책</th>
+								<td class="fs-6">
+									<div class="input-group input-group-dynamic">
+									    <select class="form-control" name="category" id="choices-Position" >
+									    	<option selected>직책선택</option>
+									      <c:forEach var="poName" items="${positionName}">
+										  	<option >${poName }</option>
+									      </c:forEach>
+										</select>
+										<select class="form-control" name="category" id="choices-Name" >
+										  	<option id="choiceName"></option>
+										</select>
+									</div>
+								</td>
+							</tr>
 					    	<tr>
 								<th class="fs-5">관리자</th>
 								<td class="fs-6">
 									<div class="input-group input-group-dynamic">
-									    <input type="text" name="name" id="name-input"
-									    class="form-control" placeholder="관리자" aria-label="관리자" aria-describedby="basic-addon1">
+									    <input type="text" name="name" id="name-input" class="form-control" 
+									    placeholder="관리자" aria-label="관리자" aria-describedby="basic-addon1" readonly>
 									</div>
 								</td>
 							</tr>
@@ -101,8 +118,8 @@
 								<th class="fs-5">전화번호</th>
 								<td class="fs-6">
 									<div class="input-group input-group-dynamic">
-									    <input type="text" name="contact" id="contact-input"
-									    class="form-control" placeholder="전화번호" aria-label="전화번호" aria-describedby="basic-addon1">
+									    <input type="text" name="contact" id="contact-input" class="form-control" 
+									    placeholder="전화번호" aria-label="전화번호" aria-describedby="basic-addon1" readonly>
 									</div>
 								</td>
 							</tr>
@@ -110,8 +127,8 @@
 								<th class="fs-5">이메일</th>
 								<td class="fs-6">
 									<div class="input-group input-group-dynamic">
-									    <input type="text" name="email" id="email-input"
-									    class="form-control" placeholder="이메일" aria-label="이메일" aria-describedby="basic-addon1">
+									    <input type="text" name="email" id="email-input" class="form-control" 
+									    placeholder="이메일" aria-label="이메일" aria-describedby="basic-addon1" readonly>
 									</div>
 								</td>
 							</tr>
@@ -125,6 +142,7 @@
 							</tr>
 					  	</table>
 				  	</form>
+				  	<!-- 수정폼 끝-->
 				</div>
 				<div class="text-center">
 					<button id="editbtn" class="btn bg-gradient-danger fs-6 mb-0 py-2 px-3">정보 수정</button>
@@ -133,11 +151,11 @@
 		</div>
 	</div>
 </div>
-<!-- 창고 상세 모달2 끝  -->
+<!-- 창고 상세 모달 끝  -->
 
 <!-- 본문 시작  -->
 	<div class="col-12">
-		<div class="card my-4">
+		<div class="card my-4 mx-4">
 			<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
 				<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
 					<h6 class="text-white text-capitalize ps-3">창고 목록</h6>
@@ -211,16 +229,46 @@
 <%@ include file="../include/js.jsp"%>
 <script type="text/javascript">
 $(document).ready(function(){
-		
+		// 필요한 변수 저장
 		var formObj = $("form[role='form']");
+		
+		// 체크박스 전체선택 기능
+		$("#cbx_chkAll").click(function() {
+			if ($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
+			else $("input[name=chk]").prop("checked", false);
+		});
 	
 		// 삭제 버튼 클릭시, 창고 번호를 사용해서 삭제 처리
 		$("#deleteBtn").click(function(){
-			formObj.attr("action","/warehouse/deleteWarehouse");
-			formObj.submit();
+			var chkboxes = $("input[name='chk']:checked");
+			
+			 if (chkboxes.length === 0) {
+		            swal({
+		                title: "삭제할 창고를 선택해주세요",
+		                icon: "warning",
+		                buttons:{
+		                    confirm: true
+		                }
+		            });
+		            return;
+		        }
+			
+			swal({
+				  title: "정말 삭제하시겠습니까?",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+					swal("삭제 완료", {icon: "success"}).then(function(){
+						$("#closebtn").click();
+						formObj.attr("action","/warehouse/deleteWarehouse");
+						formObj.submit();
+					});							
+				  }
+			});	
 		});
-		
-		
 	});
 </script>
 <script src="/resources/js/plugins/warehouseMain.js"></script>

@@ -1,6 +1,8 @@
 package com.eatit.warehousePersistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -30,6 +32,30 @@ public class WarehouseDAOImpl implements WarehouseDAO {
 	}
 
 	@Override
+	// 회원 정보 모두 가져오기
+	public List<MemberVO> getMemberListAll() {
+		return sqlsession.selectList(NAMESPACE+"getMemberListAll");
+	}
+
+	@Override
+	// 직책 정보 가져오기- ajax
+	public List<String> getPositionName() {
+		return sqlsession.selectList(NAMESPACE+"getPositionName");
+	}
+
+	@Override
+	// 직책에 맞는 회원이름 가져오기- ajax
+	public List<String> getMembersOfPosition(String position_name) {
+		return sqlsession.selectList(NAMESPACE+"getMembersOfPosition", position_name);
+	}
+	
+	@Override
+	// 이름에 맞는 회원정보 가져오기- ajax
+	public List<MemberVO> getMemberInfoByName(String name) {
+		return sqlsession.selectList(NAMESPACE+"getMemberInfoByName", name);
+	}
+
+	@Override
 	// 창고 정보 가져오기(main)
 	public List<WarehouseVO> getWarehouseListMain() {
 		logger.debug("DAO - getWarehouseListAll() 호출");
@@ -37,7 +63,7 @@ public class WarehouseDAOImpl implements WarehouseDAO {
 	}
 
 	@Override
-	// 특정 창고 정보 가져오기
+	// 특정 창고 정보 가져오기 - ajax
 	public WarehouseVO getWarehouseInfo(WarehouseVO vo) {
 		logger.debug("DAO - getWarehouseInfo(WarehouseVO vo)");
 		logger.debug("DAO vo : "+vo);
@@ -61,9 +87,11 @@ public class WarehouseDAOImpl implements WarehouseDAO {
 
 	@Override
 	// 창고 삭제
-	public void deleteWarehouse(List warehouse_no) {
+	public void deleteWarehouse(int[] warehouse_no) {
 		logger.debug("DAO - deleteWarehouse(WarehouseVO vo)");
-		sqlsession.delete(NAMESPACE+"deleteWarehouse",warehouse_no);
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("warehouse_no", warehouse_no);
+		sqlsession.delete(NAMESPACE+"deleteWarehouse",paramMap);
 	}
 	
 	

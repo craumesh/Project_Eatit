@@ -1,7 +1,10 @@
 package com.itwillbs.controller;
 
+import java.sql.Connection;
+
 import javax.inject.Inject;
 
+import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -19,8 +22,13 @@ public class WarehouseTest {
 	
 	private static final Logger logger = LoggerFactory.getLogger(WarehouseTest.class);
 	
+	private static final String NAMESPACE = "com.eatit.mapper.warehouseMapper.";
+	
 	@Inject
 	private WarehouseDAO wdao;
+	
+	@Inject
+	private SqlSession sqlsession;
 	
 	
 //	@Test
@@ -34,7 +42,7 @@ public class WarehouseTest {
 		wdao.insertWarehouse(vo);
 	}
 	
-	@Test
+//	@Test
 	public void 창고삭제테스트() {
 		WarehouseVO vo = new WarehouseVO();
 		vo.setWarehouse_no(50);
@@ -42,5 +50,10 @@ public class WarehouseTest {
 //		wdao.deleteWarehouse(vo);
 	}
 	
+	@Test
+	public void 직책정보테스트() {
+//		wdao.getPositionName();
+		wdao.getMembersOfPosition("미정");
+	}
 
 }

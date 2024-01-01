@@ -17,28 +17,12 @@ var modal = document.getElementById("warehouseModal");
 var span = document.getElementsByClassName("btn-close")[0];
 
 $(document).ready(function() {
-	
-	// 체크박스 선택
-	$("#cbx_chkAll").click(function() {
-		if ($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
-		else $("input[name=chk]").prop("checked", false);
-	});
-
-	$("input[name=chk]").click(function() {
-		var total = $("input[name=chk]").length;
-		var checked = $("input[name=chk]:checked").length;
-
-		if (total != checked) $("#cbx_chkAll").prop("checked", false);
-		else $("#cbx_chkAll").prop("checked", true);
-	});
-	// 체크박스 선택
-	
     $(".warehouseDetailBtn").on("click", function() {
         var value = $(this).val();
 //        console.log(value);
         $.ajax({
             url: '/warehouseContent?warehouse_no=' + value,
-            method: 'GET',
+            type: 'GET',
             dataType: 'json',
             success: function(data) {
                 $("#warehouse_no").text(data.warehouse_no);
@@ -60,7 +44,7 @@ $(document).ready(function() {
             }
         });
     });
-
+    
     $("#closebtn").click(function(){
 		modal.style.display = "none";
 		location.reload();
@@ -75,19 +59,18 @@ $(document).ready(function() {
 		} else {
 			swal({
 				  title: "정말 수정하시겠습니까?",
-				  text: "이 사람도 누군가의 가장입니다",
 				  icon: "warning",
 				  buttons: true,
 				  dangerMode: true,
 				})
 				.then((willDelete) => {
 				  if (willDelete) {
-					swal("당신은 정말 잔인한 사람이에요!", {icon: "success"}).then(function(){
+					swal("수정 완료!", {icon: "success"}).then(function(){
 						$("#closebtn").click(); 
 						$("#edit-form").submit();                
 					});							
 				  } else {
-				    swal("우유부단 하시군요!");
+				    swal("수정 취소!");
 				  }
 			});		    
 		}		    
@@ -117,21 +100,38 @@ $(document).ready(function() {
 		$("#note-input").val($("#note").text());
 	}
     
+    // 직책에 맞는 맴버 뽑아오기
+    $("#choices-Position").change(function(){
+    	wareUpdateDetailInfo();
+    });
+    
+    function wareUpdateDetailInfo(){
+    	let poName = $('#choices-Position').val();
+    	$.ajax({
+    		url:"/wareUpdateDetailInfo",
+    		type:'get',
+    		data:{position_name:poName},
+    		dataType:'json',
+    		success: function(result){
+//    			console.log(result);
+    			// 기존 내용 초기화
+    			if(poName=="직책선택"){
+    				 $("#choices-Name").html("<option></option>");
+    			}else{
+    				$("#choices-Name").html("<option selected>이름 선택</option>");
+    			}
+
+                // 새로운 값 추가
+                for (let i = 0; i < result.length; i++) {
+                    $("#choices-Name").append(`<option value="${result[i]}">${result[i]}</option>`);
+                }
+    		},
+    		error: function(result){
+//    			console.log(result);
+    			alert("올바르지 않는 접근입니다");
+    		}
+    	});
+    }
+    
 });
-/////////////////////// 상세 페이지(모달) ////////////////////
-
-
-//window.addEventListener('load', () => {
-//  const forms = document.getElementsByClassName('validation-form');
-//
-//  Array.prototype.filter.call(forms, (form) => {
-//    form.addEventListener('submit', function (event) {
-//      if (form.checkValidity() === false) {
-//        event.preventDefault();
-//        event.stopPropagation();
-//      }
-//
-//      form.classList.add('was-validated');
-//    }, false);
-//  });
-//}, false);
+/////////////////////////// 상세 페이지(모달) //////////////////////////
