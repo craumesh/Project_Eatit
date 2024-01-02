@@ -83,6 +83,12 @@ public class WarehouseServiceImpl implements WarehouseService {
 	}
 
 	@Override
+	// 창고 수정
+	public void warehouseUpdate(WarehouseVO vo) {
+		warehousedao.updateDetailInfo(vo);
+	}
+
+	@Override
 	// 창고 삭제
 	public void deleteWarehouse(int[] warehouse_no) {
 		logger.debug("S - deleteWarehouse(int[] warehouse_no)");

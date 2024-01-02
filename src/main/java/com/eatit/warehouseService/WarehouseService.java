@@ -35,7 +35,7 @@ public interface WarehouseService {
 	public void warehouseRegist(WarehouseVO vo);
 	
 	// 창고 수정
-	
+	public void warehouseUpdate(WarehouseVO vo);
 	
 	// 창고 삭제
 	public void deleteWarehouse(int[] warehouse_no);

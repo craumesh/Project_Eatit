@@ -55,11 +55,13 @@ public class WarehouseController {
 	}
 	
 	// 창고 모달창에서 정보 수정
-   @RequestMapping(value = "/warehouseMain", method = RequestMethod.POST)
-   public String warehouseMainPOST(WarehouseVO vo) {
-      logger.debug("/warehouse/warehouseMain 호출 -> warehouseMainPOST() 실행");
+   @RequestMapping(value = "/updateDetailInfo", method = RequestMethod.POST)
+   public String updateDetailInfo(WarehouseVO vo) {
+      logger.debug("/warehouse/updateDetailInfo 호출 -> updateDetailInfo() 실행");
+//      logger.debug("vo : "+vo);
       
-      // 서비스
+      // 정보 수정
+      warehouseService.warehouseUpdate(vo);
       
       return "redirect:/warehouse/warehouseMain";
    }
@@ -91,9 +93,6 @@ public class WarehouseController {
 		return "redirect:/warehouse/registClose";
 	}
 	
-	// 창고 수정
-	
-	
 	// 창고삭제
 	@RequestMapping(value = "/deleteWarehouse", method = RequestMethod.POST)
 	public String deleteWarehousePOST(@RequestParam("chk") int[] warehouse_no) {
@@ -106,11 +105,17 @@ public class WarehouseController {
 		return "redirect:/warehouse/warehouseMain";
 	}
 	
-	
 	// 등록 후 창닫기 전용 페이지
 	@GetMapping(value = "/registClose")
 	public void registClose() {
 		logger.debug("C - registClose()");
 	}
 	
+	
+	//http://localhost:8088/warehouse/warehouseStockMain
+	// 창고 재고 페이지
+	@RequestMapping(value = "/warehouseStockMain", method = RequestMethod.GET)
+	public void warehouseStockMainGET() {
+		logger.debug("C - warehouseStockMainGET()");
+	}
 }

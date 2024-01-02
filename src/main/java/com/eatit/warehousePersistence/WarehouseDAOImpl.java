@@ -84,6 +84,12 @@ public class WarehouseDAOImpl implements WarehouseDAO {
 		logger.debug("DAO - insertWarehouse(WarehouseVO vo)");
 		sqlsession.insert(NAMESPACE+"insertWarehouse", vo);
 	}
+	
+	@Override
+	// 창고 수정
+	public void updateDetailInfo(WarehouseVO vo) {
+		sqlsession.update(NAMESPACE+"updateDetailInfo", vo);
+	}
 
 	@Override
 	// 창고 삭제

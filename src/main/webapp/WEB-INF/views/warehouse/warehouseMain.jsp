@@ -18,11 +18,11 @@
 						<table class="table">
 							<tr>
 								<th class="fs-5">창고번호</th>
-								<td class="fs-5" id="warehouse_no"></td>
+								<td class="fs-6" id="warehouse_no"></td>
 							</tr>
 							<tr>
 								<th class="fs-5">위치명</th>
-								<td class="fs-5" id="location_name"></td>
+								<td class="fs-6" id="location_name"></td>
 							</tr>
 						</table>
 					</div>
@@ -31,45 +31,46 @@
 					<table id="view-table" class="table">
 						<tr>
 							<th class="fs-5">구분</th>
-							<td class="fs-5" id="category"></td>
+							<td class="fs-6" id="category"></td>
 						</tr>
 						<tr>
 							<th class="fs-5">창고명</th>
-							<td class="fs-5" id="warehouse_name"></td>
+							<td class="fs-6" id="warehouse_name"></td>
 						</tr>
 						<tr>
 							<th class="fs-5">관리자</th>
-							<td class="fs-5" id="name"></td>
+							<td class="fs-6" id="name"></td>
 						</tr>
 						<tr>
 							<th class="fs-5">전화번호</th>
-							<td class="fs-5" id="contact"></td>
+							<td class="fs-6" id="contact"></td>
 						</tr>
 						<tr>
 							<th class="fs-5">이메일</th>
-							<td class="fs-5" id="email"></td>
+							<td class="fs-6" id="email"></td>
 						</tr>
 						<tr>
 							<th class="fs-5">사용여부</th>
-							<td class="fs-5" id="use_status"></td>
+							<td class="fs-6" id="use_status"></td>
 						</tr>
 						<tr>
 							<th class="fs-5">비고</th>
-							<td class="fs-5" id="note"></td>
+							<td class="fs-6" id="note"></td>
 						</tr>
 						<tr>
 							<th class="fs-5">수정자</th>
-							<td class="fs-5" id="updater"></td>
+							<td class="fs-6" id="updater"></td>
 						</tr>
 						<tr>
 							<th class="fs-5">수정일자</th>
-							<td class="fs-5" id="updatedate"></td>
+							<td class="fs-6" id="updatedate"></td>
 						</tr>
 					</table>
 					
 					<!-- 수정폼 시작-->
-					<form id="edit-form" method="post">
+					<form action="/warehouse/updateDetailInfo" id="edit-form" method="post">
 						<input type="hidden" name="admin_no" id="admin_no-forSubmit" value="${no}">
+						<input type="hidden" name="warehouse_no" id="warehouse_no-forSubmit">
 						<table id="edit-table" class="d-none table">
 							<tr>
 								<th class="fs-5">구분</th>
@@ -93,14 +94,14 @@
 								<th class="fs-5">직책</th>
 								<td class="fs-6">
 									<div class="input-group input-group-dynamic">
-									    <select class="form-control" name="category" id="choices-Position" >
-									    	<option selected>직책선택</option>
+									    <select class="form-control" name="position" id="choices-Position" >
+									    	<option selected>직책 선택</option>
 									      <c:forEach var="poName" items="${positionName}">
 										  	<option >${poName }</option>
 									      </c:forEach>
 										</select>
-										<select class="form-control" name="category" id="choices-Name" >
-										  	<option id="choiceName"></option>
+										<select class="form-control" name="position" id="choices-Name" >
+										  	<option ></option>
 										</select>
 									</div>
 								</td>
@@ -177,7 +178,7 @@
 								<th class="text-center text-secondary text-xxs font-weight-bolder opacity-7 ">창고명</th>
 								<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">관리자</th>
 								<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">사용여부</th>
-								<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">상세</th>
+								<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">상세정보</th>
 							</tr>
 						</thead>
 						
@@ -209,7 +210,6 @@
 							   	   			<span class="text-secondary text-xs font-weight-bold" >+</span>
 							   	   		</button>
 									<!--상세내역 모달버튼 끝  -->
-									
 			                      	</td>
 								</tr>
 							</c:forEach>

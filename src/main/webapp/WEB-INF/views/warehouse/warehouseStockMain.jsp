@@ -7,7 +7,7 @@
 	<div class="card my-3 mx-auto pt-5 px-6 pb-2">
 		<div class="card-header p-0 position-relative mx-3 z-index-2">
 			<div class="bg-gradient-primary shadow-primary border-radius-lg pt-3 pb-3 pe-3 d-flex">
-				<h3 class="text-white text-capitalize ps-5 align-items-center mb-0 py-1">인사 정보 테이블</h3>
+				<h3 class="text-white text-capitalize ps-5 align-items-center mb-0 py-1">창고 재고 현황</h3>
 				<div class="ms-md-auto bg-white rounded p-2 d-flex align-items-center">
 					<div class="align-items-center d-flex flex-column">
 						<div class="input-group input-group-outline">

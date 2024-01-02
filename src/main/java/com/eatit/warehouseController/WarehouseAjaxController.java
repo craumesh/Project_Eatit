@@ -32,7 +32,7 @@ public class WarehouseAjaxController {
 		logger.debug("C - wareContentGET() 실행 ");
 //		logger.debug("vo : "+vo);
 		
-		// 서비스
+		// 창고 상세 정보
 		return warehouseService.warehouseInfo(vo);
 	}
 	
@@ -45,7 +45,9 @@ public class WarehouseAjaxController {
 		return warehouseService.getMembersOfposition(position_name);
 	}
 	
-	public List<MemberVO> memberInfo(@RequestParam("name") String name){
+	@RequestMapping(value = "/updateDetailInfoByName", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public List<MemberVO> memberInfo(@RequestParam("info") String name){
+		logger.debug("name : "+name);
 		
 		// 이름에 해당하는 맴버 정보 가져오기
 		return warehouseService.getMemberInfoByName(name);

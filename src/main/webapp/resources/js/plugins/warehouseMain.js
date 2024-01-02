@@ -35,8 +35,33 @@ $(document).ready(function() {
                 $("#use_status").text(data.use_status);
                 $("#note").text(data.note);
                 $("#updater").text(data.updater);
-                $("#updatedate").text(data.updatedate);
-                console.log(data);
+                
+                // 날짜 포메팅 시작
+                if(data.updatedate!=null){
+//                $("#updatedate").text(data.updatedate);
+                	var updateDate = new Date(data.updatedate);
+                	var formattedDate = updateDate.getFullYear() + '-' + pad((updateDate.getMonth() + 1)) + '-' + pad(updateDate.getDate());
+                	var formattedTime = formatTime(updateDate);
+                	$("#updatedate").text(formattedDate + ', ' + formattedTime);
+                }
+
+                function pad(number) {
+                    return (number < 10) ? '0' + number : number;
+                }
+
+                function formatTime(date) {
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var seconds = date.getSeconds();
+                    var ampm = hours >= 12 ? '오후' : '오전';
+                    hours %= 12;
+                    hours = hours ? hours : 12; // 자정 처리
+                    minutes = pad(minutes);
+                    seconds = pad(seconds);
+                    return ampm + ' ' + pad(hours) + ':' + minutes + ':' + seconds;
+                }
+                // 날짜 포메팅 끝
+//                console.log(data);
                 modal.style.display = "block";
             },
             error: function(error) {
@@ -92,6 +117,7 @@ $(document).ready(function() {
 	});
     
     function getEditInfo() {
+    	$("#warehouse_no-forSubmit").val($("#warehouse_no").text());
     	$("#category-input").val($("#category").text());
     	$("#warehouse_name-input").val($("#warehouse_name").text());
 		$("#name-input").val($("#name").text());
@@ -115,7 +141,7 @@ $(document).ready(function() {
     		success: function(result){
 //    			console.log(result);
     			// 기존 내용 초기화
-    			if(poName=="직책선택"){
+    			if(poName=="직책 선택"){
     				 $("#choices-Name").html("<option></option>");
     			}else{
     				$("#choices-Name").html("<option selected>이름 선택</option>");
@@ -132,6 +158,43 @@ $(document).ready(function() {
     		}
     	});
     }
+    
+    // 이름에 맞는 회원정보 출력
+    $("#choices-Name").change(function(){
+    	updateDetailInfoByName();
+    });
+    
+    function updateDetailInfoByName(){
+    	let infoByName = $('#choices-Name').val();
+    	let poName = $('#choices-Position').val();
+    	$.ajax({
+    		url:"/updateDetailInfoByName",
+    		type:'get',
+    		data:{info:infoByName},
+    		dataType:'json',
+    		success: function(data){
+    			console.log(data);
+    			function getInfo(){
+					$("#name-input").val($("#name").text());
+					$("#contact-input").val($("#contact").text());
+					$("#email-input").val($("#email").text());
+				}
+    			
+    			if(infoByName=="이름 선택"){
+    				getInfo();
+    			}else{
+    				$("#name-input").val(data[0].name);
+    				$("#contact-input").val(data[0].contact);
+    				$("#email-input").val(data[0].email);
+    			}
+    			
+    		},
+    		error: function(result){
+    			alert("올바르지 않는 접근입니다");
+    		}
+    	});
+    }
+    
     
 });
 /////////////////////////// 상세 페이지(모달) //////////////////////////
