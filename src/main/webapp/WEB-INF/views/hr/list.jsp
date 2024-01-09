@@ -224,11 +224,13 @@
 		
 		$("#hr-table").on("click", "tr td", function(event) {
 	        var value = $(this).closest("tr").find("td.identify-no").text();
+	        console.log('employee_no:', value);
 	        $.ajax({
 	            url: '/hr/content?employee_no=' + value,
 				method : 'GET',
 				dataType: 'json',
 				success : function(data) {
+					 console.log('AJAX success. Data:', data);
 					$('#photo_paths').attr('src', data.photo_paths).attr('width', '100');
 					$("#employee_no").text(data.employee_no);
 					$("#employee_no-forSubmit").val(data.employee_no);

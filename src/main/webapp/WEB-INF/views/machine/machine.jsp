@@ -4,51 +4,6 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="../include/header.jsp" %>
-<style>
-/* 모달 스타일 */
-.modal {
-	display: none;
-	position: fixed;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-	background-color: #fefefe;
-	margin: 5% auto;
-	padding: 20px;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	width: 50%;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.close {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-	cursor: pointer;
-	position: absolute;
-	right: 20px;
-	top: 20px;
-}
-
-.close:hover, .close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-}
-}
-#machine_info {
-	margin-top: 50px;
-}
-</style>
 <!-- 시작 -->
 <div class="col-11 mx-auto">
 	<div class="card my-3 mx-auto pt-5 px-6 pb-2">
